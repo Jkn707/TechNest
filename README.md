@@ -34,7 +34,7 @@ Basic instructions for cloning the repository and configuring the environment fo
    ```
 
 ## Relevant Pages
-- [Deliverable](./Deliverable.md)
-- [Programming Style Guide](./Programming-Style-Guide.md)
-- [Programming Rules](./Programming-Rules.md)
+- [Deliverable](./additional/Deliverable.md)
+- [Programming Style Guide](./additional/Programming-Style-Guide.md)
+- [Programming Rules](./additional/Programming-Rules.md)
 
