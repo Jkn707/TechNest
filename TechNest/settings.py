@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'user',
     'home',
     'django.contrib.humanize',
+    'rest_framework',
 ]
 
 CART_SESSION_ID = 'shoppingCart'
@@ -56,13 +57,13 @@ CART_SESSION_ID = 'shoppingCart'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',  
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
 ROOT_URLCONF = 'TechNest.urls'
 
 TEMPLATES = [
@@ -146,3 +147,16 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'  
 
 LOGIN_URL = 'login'
+
+
+
+from django.utils.translation import gettext_lazy as _
+
+LANGUAGES = [
+    ('en', _('English')),
+    ('es', _('Spanish')),
+]
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale'),
+]

@@ -1,13 +1,16 @@
 from django.shortcuts import render, get_object_or_404
+from django.utils.translation import gettext as _
 from .models import Product
 from review.models import Review
 from review.forms import ReviewForm
 from user.models import Client
+from rest_framework import generics
+from .serializers import ProductSerializer
 
 def productsByCategory(request, categoryName):
     products = Product.objects.filter(category=categoryName)
-    return render(request, 'productsByCategory.html', {'category': categoryName, 'products': products})
-
+    translated_category_name = _(categoryName)
+    return render(request, 'productsByCategory.html', {'category': translated_category_name, 'products': products})
 
 def productDetail(request, id):
     reviews = Review.objects.filter(productReviewed=Product.objects.get(id=id))
@@ -23,8 +26,14 @@ def productDetail(request, id):
     else:
         review_form = ReviewForm()
     
-    return render(request, 'productDetail.html', {'product': product,
-                                                    'reviews': reviews,
-                                                    'review_form': review_form,
-                                                    'sent_review': sent_review})
+    return render(request, 'productDetail.html', {
+        'product': product,
+        'reviews': reviews,
+        'review_form': review_form,
+        'sent_review': sent_review,
+        'review_message': _('Your review has been successfully submitted.') if sent_review else None
+    })
 
+class ProductListView(generics.ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
