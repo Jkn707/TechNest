@@ -64,6 +64,12 @@
 </style>
 
 <div class="container mt-5">
+    {% if weather %}
+        <div class="alert alert-info" role="alert">
+            Current weather in {{ weather.city }}: {{ weather.description }}, {{ weather.temperature }}°C.
+        </div>
+    {% endif %}
+    
     <div class="row">
         {% for product in products %}
             <div class="col-md-6 col-lg-4 mb-5">
