@@ -4,6 +4,7 @@ from rest_framework import status
 from django.urls import reverse
 from .models import Product
 
+
 class ProductModelTest(TestCase):
     def setUp(self):
         Product.objects.create(
