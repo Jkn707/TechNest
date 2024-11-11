@@ -6,7 +6,7 @@ import requests
 from django.shortcuts import render
 
 def home_view(request):
-    api_key = ""
+    api_key = "27bd7eb737bccadccc100d721b9f2638"
     city = "Medellin"
     weather_url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric&lang=es"
 

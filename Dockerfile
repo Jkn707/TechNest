@@ -1,13 +1,22 @@
+# Use the official Python image as the base image
 FROM python:3.8
 
-ENV PYTHONUNBUFFERED=1
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
-WORKDIR /code
+# Set the working directory in the container
+WORKDIR /app
 
-COPY requirements.txt /code
+# Install dependencies
+COPY requirements.txt /app/
+RUN pip install --no-cache-dir -r requirements.txt
 
-RUN pip install -r requirements.txt
+# Copy the Django project into the container
+COPY . /app/
 
-COPY . /code
-
+# Expose the port Django runs on
 EXPOSE 8000
+
+# Command to run Django application
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "TechNest.wsgi:application"]
